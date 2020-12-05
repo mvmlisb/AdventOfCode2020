@@ -1,4 +1,4 @@
-import {Constants} from "../Constants";
+import {Constants} from "../constants";
 
 const requiredFields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"];
 

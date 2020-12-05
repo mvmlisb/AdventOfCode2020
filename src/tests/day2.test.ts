@@ -2,11 +2,11 @@
 import "jest";
 import {executeFirstTask, executeSecondTask, parsePasswordData} from "../days/day2";
 import fs from "fs";
-import {Constants} from "../Constants";
+import {Constants} from "../constants";
 
 const data = fs
     .readFileSync("data/day2.txt","utf8")
-    .split(Constants.newline).map(string => parsePasswordData(string))
+    .split(Constants.newline).map(string => parsePasswordData(string));
 
 test("Day 2: First task", () => {
     expect(executeFirstTask(data)).toBe(607);

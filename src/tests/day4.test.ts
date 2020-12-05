@@ -3,10 +3,10 @@ import "jest";
 import {executeFirstTask} from "../days/day4";
 import fs from "fs";
 import {parsePassportData} from "../days/day4";
-import {Constants} from "../Constants";
+import {Constants} from "../constants";
 
 const rowData = fs.readFileSync("data/day4.txt","utf8").split(Constants.newline);
-const data = parsePassportData(rowData)
+const data = parsePassportData(rowData);
 
 
 test("Day 4: First task", () => {

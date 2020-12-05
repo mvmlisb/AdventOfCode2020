@@ -54,8 +54,3 @@ function parseRange(range: string): Range {
 
     return {start: parseInt(splitted[0]), end: parseInt(splitted[1])} as Range;
 }
-
-
-
-
-
