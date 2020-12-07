@@ -1,10 +1,13 @@
+import {inRange} from "./day4";
+import {range} from "ramda";
+
 interface PasswordData {
     range: Range;
     char: string;
     password: string;
 }
 
-interface Range {
+export interface Range {
     start: number;
     end: number;
 }
@@ -12,7 +15,7 @@ interface Range {
 export function executeFirstTask(data: PasswordData[]){
     const isValidData = (data: PasswordData) => {
         const length = [...data.password].filter(charFromStr => charFromStr === data.char).length;
-        return length >= data.range.start && length <= data.range.end;
+        return inRange(length.toString(), data.range)
     };
 
     return executeTask(data, isValidData)

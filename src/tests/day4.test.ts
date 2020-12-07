@@ -1,6 +1,6 @@
 
 import "jest";
-import {executeFirstTask} from "../days/day4";
+import {executeFirstTask, executeSecondTask} from "../days/day4";
 import fs from "fs";
 import {parsePassportData} from "../days/day4";
 import {Constants} from "../constants";
@@ -13,6 +13,6 @@ test("Day 4: First task", () => {
     expect(executeFirstTask(data)).toBe(230);
 });
 
-// test("Day 3: Second task", () => {
-//     expect(executeSecondTask(data)).toBe(321);
-// });
+test("Day 4: Second task", () => {
+    expect(executeSecondTask(data)).toBe(321);
+});
