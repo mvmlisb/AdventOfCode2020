@@ -14,5 +14,5 @@ test("Day 4: First task", () => {
 });
 
 test("Day 4: Second task", () => {
-    expect(executeSecondTask(data)).toBe(321);
+    expect(executeSecondTask(data)).toBe(156);
 });
