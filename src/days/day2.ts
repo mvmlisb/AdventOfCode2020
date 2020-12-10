@@ -1,5 +1,4 @@
-import {inRange} from "./day4";
-import {range} from "ramda";
+import {inRange, parseRange, Range} from "../range";
 
 interface PasswordData {
     range: Range;
@@ -7,15 +6,10 @@ interface PasswordData {
     password: string;
 }
 
-export interface Range {
-    start: number;
-    end: number;
-}
-
 export function executeFirstTask(data: PasswordData[]){
     const isValidData = (data: PasswordData) => {
         const length = [...data.password].filter(charFromStr => charFromStr === data.char).length;
-        return inRange(length.toString(), data.range)
+        return inRange(length, data.range)
     };
 
     return executeTask(data, isValidData)
@@ -49,11 +43,3 @@ export function parsePasswordData(str: string) {
     return {range: range, char: char, password: password} as PasswordData;
 }
 
-function parseRange(range: string): Range {
-    const splitted = range.split("-");
-
-    if (splitted.length !== 2)
-        throw new Error("Invalid range");
-
-    return {start: parseInt(splitted[0]), end: parseInt(splitted[1])} as Range;
-}

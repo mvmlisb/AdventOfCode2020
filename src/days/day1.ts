@@ -1,13 +1,14 @@
 const sum = 2020;
+
 export function executeFirstTask(numbers: number[]) {
     for (let i = 0; i < numbers.length; i++) {
         const current = numbers[i];
 
         for (let j = i + 1; j < numbers.length; j++) {
-            const rest = numbers[j];
+            const next = numbers[j];
 
-            if (current + rest === sum)
-                return current * rest;
+            if (current + next === sum)
+                return current * next;
         }
     }
     return -1;
