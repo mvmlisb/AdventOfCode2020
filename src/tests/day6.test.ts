@@ -1,4 +1,3 @@
-
 import "jest";
 import {executeFirstTask, executeSecondTask} from "../days/day6";
 import fs from "fs";
@@ -11,5 +10,5 @@ test("Day 6: First task", () => {
 });
 
 test("Day 6: Second task", () => {
-    expect(executeSecondTask(data)).toBe(3635);
+    expect(executeSecondTask(data)).toBe(3323);
 });

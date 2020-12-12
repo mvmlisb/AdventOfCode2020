@@ -1,65 +1,43 @@
 import {Constants} from "../constants";
 
-const personSeparator = "|";
-
-function splitDataOnGroups(data: string, personSeparator: string) {
-    const result: string[] = [];
-    let group = "";
+function splitDataOnGroups(data: string) {
+    const groups: string[][] = [];
+    let group: string[] = [];
 
     data.split(Constants.newline).forEach(str => {
-
         if (str.length > 0) {
-            group += `${str}${personSeparator}`;
+            group.push(str);
+        } else {
+            groups.push(group);
+            group = [];
         }
-        else {
-            result.push(group);
-            group = "";
-        }
-    })
+    });
 
-    result.push(group);
+    groups.push(group);
 
-    return result;
+    return groups;
 }
 
-export function replaceRepeatedChars(string: string) {
+function replaceRepeatedChars(string: string) {
     return string.replace(/(.)(?=.*\1)/g, "");
 }
 
-export function countRepeatedChars(string: string, personSeparator: string) {
-    const answersOfPersons = string.split(personSeparator)
-    if (answersOfPersons.length === 1)
-        return answersOfPersons.length
+export function findIntersectionsOfStrings(a: string, b: string) {
+    return [...a].filter(char => [...b].includes(char)).join("");
+}
 
-    let count = 0;
-    const alreadyCountedChars: string[] = [personSeparator];
-
-    for (let i = 0; i < string.length; i++) {
-        const current = string[i];
-
-        for (let j = i + 1; j < string.length; j++) {
-            const next = string[j];
-
-            if (current === next && !alreadyCountedChars.includes(current)) {
-                count++;
-                alreadyCountedChars.push(current);
-                break;
-            }
-        }
-    }
-
-    return count;
+function findIntersectionsInArray(strings: string[]){
+    return strings.reduce((acc, next) =>
+        acc = findIntersectionsOfStrings(acc, next), strings[0]);
 }
 
 export function executeFirstTask(data: string) {
-    let count = 0;
-    splitDataOnGroups(data, "").forEach(group => count += replaceRepeatedChars(group).length);
-    return count;
+    return splitDataOnGroups(data).reduce((acc, group) =>
+        acc += replaceRepeatedChars(group.join("")).length, 0);
 }
 
 export function executeSecondTask(data: string) {
-    let count = 0;
-    splitDataOnGroups(data, personSeparator).forEach(group => count += countRepeatedChars(group, personSeparator));
-    return count;
-}
+   return splitDataOnGroups(data).reduce((acc, group) =>
+       acc += findIntersectionsInArray(group).length, 0);
 
+}
